@@ -3,11 +3,15 @@
 
 var Promise = require('bluebird');
 var index = require('./package.json');
+var fs = require("fs");
+var path = require("path");
+var native_lib_path = path.join(__dirname, '.', 'builds', 'usb_detection_'+ process.platform + '.node');
 
 if (global[index.name] && global[index.name].version === index.version) {
 	module.exports = global[index.name];
-} else {
-	var detection = require('bindings')('detection.node');
+} else if(fs.existsSync(native_lib_path)) {
+
+	var detection = require(native_lib_path);
 	var EventEmitter2 = require('eventemitter2').EventEmitter2;
 
 	var detector = new EventEmitter2({
@@ -107,4 +111,6 @@ if (global[index.name] && global[index.name].version === index.version) {
 	global[index.name] = detector;
 
 	module.exports = detector;
+} else {
+  throw new Error('The build for the platform ' + process.platform + ' does not exist.');
 }

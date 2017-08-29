@@ -5,8 +5,7 @@
   "main": "index.js",
   "gypfile": true,
   "scripts": {
-    "test": "mocha --timeout 10000",
-    "postinstall": "node-gyp rebuild"
+    "test": "mocha --timeout 10000"
   },
   "repository": {
     "type": "git",
@@ -34,7 +33,6 @@
     "url": "https://raw.github.com/MadLittleMods/node-usb-detection/master/licence"
   },
   "dependencies": {
-    "bindings": "1.1.0",
     "bluebird": "^2.9.27",
     "eventemitter2": ">=0.4.11",
     "nan": "^2.2.0"
