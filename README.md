@@ -8,7 +8,6 @@
 
 ### [Changelog](https://github.com/MadLittleMods/node-usb-detection/blob/master/CHANGELOG.md)
 
-
 # Install
 
 ```
@@ -45,7 +44,6 @@ Also install libudev:
 sudo apt-get install libudev-dev
 ```
 
-
 # Usage
 
 ```js
@@ -74,7 +72,6 @@ usbDetect.find(vid, pid, function(err, devices) { console.log('find', devices, e
 usbDetect.find().then(function(devices) { console.log(devices); }).catch(function(err) { console.log(err); });
 ```
 
-
 # API
 
 ## `on(eventName, callback)`
@@ -91,7 +88,6 @@ usbDetect.find().then(function(devices) { console.log(devices); }).catch(functio
  	 	 - `change:vid:pid`
  - `callback`: Function that is called whenever the event occurs
  	 - Takes a `device`
-
 
 ```js
 var usbDetect = require('usb-detection');
@@ -112,7 +108,6 @@ usbDetect.on('add', function(device) {
 */
 ```
 
-
 ## `find(vid, pid, callback)`
 
 **Note:** All `find` calls return a promise even with the node-style callback flavors.
@@ -130,7 +125,6 @@ Parameters:
  - `pid`: restrict search to s certain product id
  - `callback`: Function that is called whenever the event occurs
  	 - Takes a `err` and `devices` parameter.
-
 
 ```js
 var usbDetect = require('usb-detection');
@@ -164,9 +158,6 @@ usbDetect.find(function(err, devices) {
 */
 ```
 
-
-
-
 # FAQ
 
 ### The script/process is not exiting/quiting
@@ -180,8 +171,6 @@ var usbDetect = require('usb-detection');
 usbDetect.stopMonitoring();
 ```
 
-
-
 # Testing
 
 We have a suite of Mocha/Chai tests.
@@ -191,3 +180,9 @@ The tests require some manual interaction of plugging/unplugging a USB device. F
 ```sh
 npm test
 ```
+
+## Notes:
+This package comes with two versions already built of the native code for the platforms `win32-ia32` and `darwin-64bit`. The builds are
+created to match the version `1.6.11` of `electron`. If you need to use this package for a platform different from
+the listed above or for a different version of electron you can't use it. In this way you don't need to rebuild the library
+for the current platform allow you to release the electron app in any platform for all the supported ones.
